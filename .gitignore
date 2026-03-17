@@ -1,6 +1,52 @@
+# ============================================================================
+# nano-claude-code .gitignore
+# 防止敏感信息和临时文件被提交到 Git 仓库
+# ============================================================================
+
+# ============================================================================
+# 敏感信息 - 绝对不能提交！
+# ============================================================================
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# API 密钥和证书
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+*.der
+
+# 密钥和凭证目录
+secrets/
+credentials/
+.private/
+*.credentials
+.google-app-credentials.json
+.aws/credentials
+.azure/
+
+# 常见的 API 密钥文件名
+api_key.txt
+apikey.txt
+secret.txt
+token.txt
+auth.json
+
+# ============================================================================
+# 编程语言特定文件
+# ============================================================================
+
 # Python
-*.py[cod]
 __pycache__/
+*.py[cod]
+*$py.class
 *.so
 .Python
 build/
@@ -15,40 +61,152 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Virtual environments
+# Python 虚拟环境
 venv/
 ENV/
 env/
+.venv/
+.virtualenv/
+pipenv/
+.pyenv/
 
-# IDE
+# TypeScript / JavaScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.eslintcache
+.stylelintcache
+.next/
+out/
+build/
+dist/
+.nuxt/
+.cache/
+.parcel-cache/
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# ============================================================================
+# IDE 和编辑器
+# ============================================================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+*.bak
+.tmp/
+*.tmp
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+.history/
 
-# OS
+# ============================================================================
+# 操作系统
+# ============================================================================
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# Environment
-.env
-.env.local
-
-# Node
-node_modules/
-.next/
-out/
-
-# Rust
-target/
-Cargo.lock
-
-# Project specific
+# ============================================================================
+# 数据库和日志
+# ============================================================================
 *.db
+*.sqlite
+*.sqlite3
+*.sql
+*.sql.gz
+
 *.log
+logs/
+*.log.*
+npm-debug.log
+yarn-error.log
+
+# ============================================================================
+# 临时和测试文件
+# ============================================================================
 TODO.md
+notes.md
+todo.txt
+/tmp/
+temp/
+*.tmp
+*.temp
+*.cache
+
+# 测试覆盖率
+coverage/
+*.lcov
+.nyc_output/
+.coverage
+.pytest_cache/
+.htmlcov/
+
+# ============================================================================
+# 备份和压缩文件
+# ============================================================================
+*.bak
+*.backup
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ============================================================================
+# 其他
+# ============================================================================
+*.pid
+*.seed
+*.pid.lock
+.npm
+.eslintcache
+.repl_history
+.pnp.*
+yarnclean
+yarn-error.log
+
+# ============================================================================
+# 特定工具
+# ============================================================================
+# Claude Code 相关
+.claude/cache/
+.claude/session/
+
+# Git 相关（但保留 .gitignore）
+*.orig
+*.rej
+.gitconfig.local
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Windows
+*.lnk
+*.url
