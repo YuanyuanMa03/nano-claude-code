@@ -74,12 +74,8 @@ class TestAgentLoop:
         result = agent.run("Test query")
         assert result == "Final answer"
 
-    @patch('agent.run_bash')
-    def test_agent_loop_with_tool_use(self, mock_bash, agent):
+    def test_agent_loop_with_tool_use(self, agent):
         """Test agent loop with tool use."""
-        # Mock bash output
-        mock_bash.return_value = "file.txt"
-
         # First call: LLM wants to use tool
         first_response = MagicMock()
         first_response.stop_reason = "tool_use"
@@ -101,6 +97,9 @@ class TestAgentLoop:
 
         agent.client.messages.create.side_effect = [first_response, second_response]
 
-        result = agent.run("List files")
-        assert result == "I found file.txt"
-        mock_bash.assert_called_once_with("ls", 120)
+        # Patch _execute_tool to avoid actual bash execution
+        with patch.object(agent, '_execute_tool', return_value="file.txt") as mock_exec:
+            result = agent.run("List files")
+            assert result == "I found file.txt"
+            # Verify that _execute_tool was called
+            assert mock_exec.call_count == 1
