@@ -1,0 +1,6 @@
+# Production dependencies
+anthropic>=0.18.0
+python-dotenv>=1.0.0
+
+# Development dependencies
+-e .[dev]
